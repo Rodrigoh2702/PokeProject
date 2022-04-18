@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "PokeProject",
+  "namespace": "",
+  "sfdcLoginUrl": "https://pokemon9-dev-ed.my.salesforce.com",
+  "sourceApiVersion": "52.0"
+}

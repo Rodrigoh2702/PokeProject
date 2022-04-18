@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-m-top_small">
+        <lightning-card  variant="Narrow"  title="Search" icon-name="standard:account">
+            <lightning-button variant="brand" label="Search" title="Search" onclick={handleClick} class="slds-m-left_x-small" slot="actions"></lightning-button>
+            <div onkeyup={handleKeyUp} class="slds-p-horizontal_small">
+                <lightning-input
+                    name="enter-search"
+                    label="Search any Pokemon"
+                    type="search"
+                ></lightning-input>
+            </div>
+            <p if:true={queryTerm}>
+                <img src="" alt={queryTerm} />
+            </p>
+            <p slot="footer">Card Footer</p>
+        </lightning-card>
+    </div>
+</template>

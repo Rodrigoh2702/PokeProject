@@ -1,0 +1,13 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card  title="Pokemons">
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="id"
+                    data={pokemonList}
+                    columns={cols}>
+            </lightning-datatable>
+        </div>    
+        <p slot="footer">Pokemon List</p>
+    </lightning-card>
+</template>
