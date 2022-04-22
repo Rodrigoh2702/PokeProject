@@ -27,15 +27,9 @@ public with sharing class pokemonController {
         return response;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable= true)
     public static List<Object> getAllPokemons(){
-        List<Object> pokemons = [SELECT Name, Pokedex_Number__c, Is_starter__c, Weight__c, Height__c, Pokemon_Image_Url__c FROM Pokemon__c ORDER BY Pokedex_Number__c ASC LIMIT 24 OFFSET 24];
-        return pokemons;
-    }
-
-    @AuraEnabled
-    public static List<Object> getPokemons(Integer page){
-        List<Object> pokemons = [SELECT Name, Pokedex_Number__c, Is_starter__c, Weight__c, Height__c, Pokemon_Image_Url__c FROM Pokemon__c ORDER BY Pokedex_Number__c ASC LIMIT 24 OFFSET :page];
+        List<Object> pokemons = [SELECT Name, Pokedex_Number__c, Pokemon_Image_Url__c FROM Pokemon__c ORDER BY Pokedex_Number__c ASC];
         return pokemons;
     }
 }
