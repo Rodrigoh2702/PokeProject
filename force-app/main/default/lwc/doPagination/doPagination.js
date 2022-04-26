@@ -7,7 +7,7 @@ export default class DoPaginaton extends LightningElement {
     @api recordSize = 24;
 
     get records(){
-        return this.visibleRecords
+        return this.visibleRecords;
     }
 
     @api 
@@ -19,11 +19,6 @@ export default class DoPaginaton extends LightningElement {
             this.updateRecords();
         }
     };
-
-    firstHandler() {
-        this.currentPage = 1;
-        this.updateRecords();
-    }
     
     get disablePrevious() {
         return this.currentPage <= 1;
@@ -31,6 +26,11 @@ export default class DoPaginaton extends LightningElement {
 
     get disableNext() {
         return this.currentPage >= this.totalPage;
+    }
+
+    firstHandler() {
+        this.currentPage = 1;
+        this.updateRecords();
     }
 
     previousHandler() {

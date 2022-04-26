@@ -1,9 +1,11 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import getAllPokemons from '@salesforce/apex/pokemonController.getAllPokemons';
 
 export default class PokemonGrid extends LightningElement {
     totalPokemons;
     visiblePokemons;
+
+    @track showModal = false;
     
     @wire(getAllPokemons)
     wiredPokemons({ error, data }) {
@@ -18,6 +20,15 @@ export default class PokemonGrid extends LightningElement {
         
     updatePokemonHandler(event){
         this.visiblePokemons = [...event.detail.records];
-        console.log('Handler: ' + event.detail.records);
+        //console.log('Handler: ' + event.detail.records);
+    }
+
+    openModal(event) {
+        this.showModal = true;
+        console.log(event.detail);
+    }
+
+    closeModal(event) {
+        this.showModal = false;
     }
 }

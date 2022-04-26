@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import getPokemons from '@salesforce/apex/pokemonController.getPokemons';
+import getAllPokemons from '@salesforce/apex/pokemonController.getAllPokemons';
 
 const columns = [
     { label: 'Name', fieldName: 'Name', type: 'text' },
@@ -17,7 +17,7 @@ export default class CalloutPokeApi extends LightningElement {
     @track page = 24;
 
     connectedCallback() {
-        getPokemons({page: this.page})
+        getAllPokemons()
         .then((result) => {
             this.pokemonList = result;
             this.error = undefined;
