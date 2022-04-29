@@ -4,9 +4,9 @@ import getAllPokemons from '@salesforce/apex/pokemonController.getAllPokemons';
 const columns = [
     { label: 'Name', fieldName: 'Name', type: 'text' },
     { label: 'Pokedex Number', fieldName: 'Pokedex_Number__c', type: 'number' },
-    { label: 'Is Starter', fieldName: 'Is_Starter__c', type: 'boolean' },
     { label: 'Weight', fieldName: 'Weight__c', type: 'number' },
-    { label: 'Height', fieldName: 'Height__c', type: 'number' }
+    { label: 'Height', fieldName: 'Height__c', type: 'number' },
+    { label: 'Types', fieldName: 'Types__c', type: 'text' },
 ];
 
 export default class CalloutPokeApi extends LightningElement {
