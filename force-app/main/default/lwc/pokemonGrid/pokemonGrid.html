@@ -1,10 +1,10 @@
 <template>
     <c-modal show-modal={showModal} onclose={closeModal}>
         <div slot="header">
-            <h2 slot="header" class="slds-text-heading_medium slds-hyphenate slds-text-title_caps">{pokemonName}</h2>
+            <h2 slot="header" class="slds-text-heading_medium slds-hyphenate slds-text-title_caps"># {pokemonNumber}: {pokemonName}</h2>
         </div>
         <div slot="body">
-            <div class="slds-grid">
+            <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size_6-of-12">
                     <img src={pokemonImageLink} alt="PokemonSprite">
                 </div>
@@ -16,10 +16,33 @@
                         Weight: {pokemonWeight}
                     </div>
                     <div class="slds-col slds-size_1-of-2">
-                        Abilities: {pokemonAbilities}
+                        Base Experience: {pokemonBaseExp}
                     </div>
                     <div class="slds-col slds-size_1-of-2">
-                        Types: {pokemonTypes}|
+                        Types: {pokemonTypes}
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        Abilities: {pokemonAbilities}
+                    </div>
+                </div>
+                <div class="slds-grid slds-col slds-size_6-of-12 slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">
+                        HP: {pokemonHP}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Speed: {pokemonSpeed}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Attack: {pokemonAttack}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Defense: {pokemonDefense}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Special Attack: {pokemonSpAtk}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Special Defense: {pokemonSpDef}
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ public with sharing class pokemonController {
     public static Pokemon__c fetchMoreInfo(String pokedexNumber){
         Integer pokedexInt = Integer.valueOf(pokedexNumber);
         Pokemon__c pokemon = [SELECT Id, Name, Pokedex_Number__c, Height__c, Weight__c, Abilities__c, Base_Experience__c,
-                            HP__c, Attack__c, Defense__c, Special_Attack__c, Special_Defense__c, Speed__c, Type__c 
+                            HP__c, Attack__c, Defense__c, Special_Attack__c, Special_Defense__c, Speed__c, Type__c, Pokemon_Image_Url__c 
                             FROM Pokemon__c WHERE Pokedex_Number__c = :pokedexInt LIMIT 1];
         if (pokemon.Abilities__c == null) {
             HttpResponse response = getResponse('https://pokeapi.co/api/v2/pokemon/' + pokedexNumber);

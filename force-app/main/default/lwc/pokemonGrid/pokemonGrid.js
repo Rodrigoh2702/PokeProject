@@ -54,8 +54,9 @@ export default class PokemonGrid extends LightningElement {
             this.pokemonSpeed = result.Speed__c;
             this.pokemonWeight = result.Weight__c;
             this.pokemonHeight = result.Height__c;
-            this.pokemonTypes = result.Types__c;
-            this.pokemonImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + result.Pokedex_Number__c +'.png';
+            this.pokemonTypes = result.Type__c;
+            //console.log(this.pokemonTypes);
+            this.pokemonImage = result.Pokemon_Image_Url__c;
             //console.log(this.pokemonImage);
             this.pokemonNumber = result.Pokedex_Number__c;
             this.pokemonBaseExp = result.Base_Experience__c;
