@@ -1,13 +1,31 @@
 <template>
+    <c-modal show-modal={showModal} onclose={closeModal}>
+        <div slot="header">
+            <h2 slot="header" class="slds-text-heading_medium slds-hyphenate slds-text-title_caps">{pokemonName}</h2>
+        </div>
+        <div slot="body">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_6-of-12">
+                    <img src={pokemonImageLink} alt="PokemonSprite">
+                </div>
+                <div class="slds-grid slds-col slds-size_6-of-12 slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">
+                        Height: {pokemonHeight}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Weight: {pokemonWeight}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Abilities: {pokemonAbilities}
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        Types: {pokemonTypes}|
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-modal>
     <div class="slds-grid slds-gutters slds-wrap slds-grid_align-space">
-        <c-modal show-modal={showModal} onclose={closeModal}>
-            <div slot="header">
-                <h2 slot="header" class="slds-text-heading_medium slds-hyphenate">Something</h2>
-            </div>
-            <div slot="body">
-                Body
-            </div>
-        </c-modal>
         <template for:each={visiblePokemons} for:item="pokemon">
             <div class="slds-col slds-size_1-of-5 slds-box slds-m-around_small slds-theme_default" key={pokemon.Id} data-id={pokemon.Pokedex_Number__c} onclick={openModal}>
                 <div class="slds-grid">
