@@ -1,48 +1,105 @@
 <template>
     <c-modal show-modal={showModal} onclose={closeModal}>
         <div slot="header">
-            <h2 slot="header" class="slds-text-heading_medium slds-hyphenate slds-text-title_caps"># {pokemonNumber}: {pokemonName}</h2>
+            <h2 slot="header" class="slds-text-heading_medium slds-hyphenate slds-text-title_caps"># {pokemonNumber}:
+                {pokemonName}</h2>
         </div>
         <div slot="body">
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size_6-of-12">
-                    <img src={pokemonImageLink} alt="PokemonSprite">
+                    <img src={pokemonImageLink} alt="PokemonSprite" onerror={missingImageHandler}>
                 </div>
                 <div class="slds-grid slds-col slds-size_6-of-12 slds-wrap">
-                    <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-col slds-size_1-of-3">
                         Height: {pokemonHeight}
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-col slds-size_1-of-3">
                         Weight: {pokemonWeight}
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Base Experience: {pokemonBaseExp}
+                    <div class="slds-col slds-size_1-of-3">
+                        Base EXP: {pokemonBaseExp}
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Types: {pokemonTypes}
+                    <div class="slds-col slds-size_1-of-1 slds-m-around_medium">
+                        Types: 
+                        <template for:each={pokemonTypes} for:item="type">
+                            <span class="slds-p-around_small slds-box slds-box_small slds-m-left_small slds-theme_shade" key={type.id}>
+                                {type}
+                            </span>
+                        </template>
                     </div>
-                    <div class="slds-col slds-size_1-of-1">
-                        Abilities: {pokemonAbilities}
+                    <div class="slds-col slds-size_1-of-1 slds-m-around_medium">
+                        Abilities: 
+                        <template for:each={pokemonAbilities} for:item="ability">
+                            <span class="slds-p-around_small slds-box slds-box_small slds-m-left_small slds-theme_shade" key={ability.id}>
+                                {ability}
+                            </span>
+                        </template>
                     </div>
                 </div>
-                <div class="slds-grid slds-col slds-size_6-of-12 slds-wrap">
-                    <div class="slds-col slds-size_1-of-2">
-                        HP: {pokemonHP}
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-10">
+                        <span>HP: {pokemonHP}</span>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Speed: {pokemonSpeed}
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonHP} aria-label="HP" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonHPBar}>
+                            <span class="slds-assistive-text">HP: {pokemonHP}</span>
+                        </span>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Attack: {pokemonAttack}
+                </div>
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-11">
+                        <span>Speed: {pokemonSpeed}</span>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Defense: {pokemonDefense}
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonSpeed} aria-label="Speed" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonSpeedBar}>
+                            <span class="slds-assistive-text">Speed: {pokemonSpeed}</span>
+                        </span>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Special Attack: {pokemonSpAtk}
+                </div>
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-12">
+                        <span>Attack: {pokemonAttack}</span>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        Special Defense: {pokemonSpDef}
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonAttack} aria-label="Attack" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonAttackBar}>
+                            <span class="slds-assistive-text">Attack: {pokemonAttack}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-13">
+                        <span>Defense: {pokemonDefense}</span>
+                    </div>
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonDefense} aria-label="Defense" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonDefenseBar}>
+                            <span class="slds-assistive-text">Defense: {pokemonDefense}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-14">
+                        <span>Special Attack: {pokemonSpAtk}</span>
+                    </div>
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonSpAtk} aria-label="Special Attack" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonSpAtkBar}>
+                            <span class="slds-assistive-text">Special Attack: {pokemonSpAtk}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-grid slds-col slds-size_1-of-1 slds-wrap">
+                    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-15">
+                        <span>Special Defense: {pokemonSpDef}</span>
+                    </div>
+                    <div class="slds-progress-bar slds-col slds-size_1-of-1" aria-valuemin="0" aria-valuemax="200"
+                        aria-valuenow={pokemonSpDef} aria-label="Special Defense" role="progressbar">
+                        <span class="slds-progress-bar__value" style={pokemonSpDefBar}>
+                            <span class="slds-assistive-text">Special Defense: {pokemonSpDef}</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -50,12 +107,14 @@
     </c-modal>
     <div class="slds-grid slds-gutters slds-wrap slds-grid_align-space">
         <template for:each={visiblePokemons} for:item="pokemon">
-            <div class="slds-col slds-size_1-of-5 slds-box slds-m-around_small slds-theme_default" key={pokemon.Id} data-id={pokemon.Pokedex_Number__c} onclick={openModal}>
+            <div class="slds-col slds-size_1-of-5 slds-box slds-m-around_small slds-theme_default" key={pokemon.Id}
+                data-id={pokemon.Pokedex_Number__c} onclick={openModal}>
                 <div class="slds-grid">
                     <div class="slds-col slds-size_2-of-12 slds-grid_align-center slds-align_absolute-center">
                         {pokemon.Pokedex_Number__c}
                     </div>
-                    <div class="slds-col slds-size_5-of-12 slds-grid_align-center slds-align_absolute-center slds-text-title_caps">
+                    <div
+                        class="slds-col slds-size_5-of-12 slds-grid_align-center slds-align_absolute-center slds-text-title_caps">
                         {pokemon.Name}
                     </div>
                     <div class="slds-col slds-size_5-of-12 slds-grid_align-center">
@@ -66,7 +125,7 @@
         </template>
     </div>
     <div>
-        <c-do-pagination records={totalPokemons} onupdate={updatePokemonHandler}></c-do-pagination>
+        <c-do-pagination records={filteredPokemons} onupdate={updatePokemonHandler}></c-do-pagination>
     </div>
-    
+
 </template>

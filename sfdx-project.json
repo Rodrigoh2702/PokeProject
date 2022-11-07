@@ -8,5 +8,6 @@
   "name": "PokeProject",
   "namespace": "",
   "sfdcLoginUrl": "https://pokemon9-dev-ed.my.salesforce.com",
-  "sourceApiVersion": "52.0"
+  "sourceApiVersion": "52.0",
+  "oauthLocalPort" : 1824
 }

@@ -1,20 +1,23 @@
-import { LightningElement, track } from 'lwc';
+import POKEMESSAGECHANNEL_CHANNEL from '@salesforce/messageChannel/pokeMessageChannel__c';
+import { MessageContext, publish } from 'lightning/messageService';
+import { LightningElement ,wire } from 'lwc';
 
 export default class PokedexSearch extends LightningElement {
-    queryTerm;
+    searchTerm;
     clickedButtonLabel;
-    PokemonName;
-    PoledexNumber;
-    PokemonImageUrl;
+
+    @wire(MessageContext)
+    messageContext;
 
     handleKeyUp(event) {
-        const isEnterKey = event.keyCode === 13;
-        if (isEnterKey) {
-            this.queryTerm = event.target.value;
+        this.searchTerm = event.target.value;
+        const payload = {
+            pokemonName: this.searchTerm
         }
+        publish(this.messageContext, POKEMESSAGECHANNEL_CHANNEL, payload);
     }
 
     handleClick(event) {
-        this.clickedButtonLabel = event.target.label;
+        this.handleKeyUp(event);
     }
 }

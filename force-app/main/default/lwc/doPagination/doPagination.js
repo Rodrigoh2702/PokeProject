@@ -14,7 +14,6 @@ export default class DoPaginaton extends LightningElement {
     set records(data) {
         if(data) {
             this.totalRecords = data;
-            
             this.totalPage = Math.ceil(data.length / this.recordSize);
             this.updateRecords();
         }
@@ -55,6 +54,7 @@ export default class DoPaginaton extends LightningElement {
     updateRecords(){
         const start = (this.currentPage - 1) * this.recordSize;
         const end = this.currentPage * this.recordSize;
+        //console.log('start: ' + start + ' end: ' + end + ' total: ' + typeof this.totalRecords);
         this.visibleRecords = this.totalRecords.slice(start, end);
         this.dispatchEvent(new CustomEvent('update', {
             detail: {
